@@ -7,8 +7,8 @@ import org.json.simple.JSONObject;
 
 
 
-public class UserHttpActions{
-
+public class UserHttpActions {
+	
     private final String url;
 
     public  UserHttpActions()
@@ -17,13 +17,10 @@ public class UserHttpActions{
         url = "http://172.16.93.1:8081/api/users";
     }
 
-    public HttpResponse addUser(JSONObject createUserJsonData) throws UnirestException {
+    public HttpResponse<String> addUser(JSONObject createUserJsonData) throws UnirestException {
         HttpResponse<String> response;
         response = Unirest.post(url).body(createUserJsonData)
                 .asString();
         return response;
-
     }
-
-
 }

@@ -14,7 +14,7 @@ public class UserHttpActions {
     public  UserHttpActions()
     {
 
-        url = "http://172.16.93.1:8081/api/users";
+        url = "http://127.0.0.1:8081/api/users";
     }
 
     public HttpResponse<String> addUser(JSONObject createUserJsonData) throws UnirestException {
@@ -23,4 +23,11 @@ public class UserHttpActions {
                 .asString();
         return response;
     }
+
+	public HttpResponse<String> getUsers() throws UnirestException {
+		
+		 HttpResponse<String> response;
+	        response = Unirest.get(url).asString();
+	        return response;
+	}
 }

@@ -13,7 +13,7 @@ public class UserDAOService {
 	private static int userIdCount = 3;
 	
 	static {
-		users.add(new User(1, "Adam New", new Date()));
+		users.add(new User(1, "Adam", new Date()));
 		users.add(new User(2, "Eve", new Date()));
 		users.add(new User(3, "Roy", new Date()));
 	}

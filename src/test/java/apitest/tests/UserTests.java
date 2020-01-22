@@ -7,14 +7,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,20 +22,22 @@ public class UserTests {
     private UserHttpActions userHttpActions;
     JSONParser jsonParser;
     private JSONObject createUserJsonData;
-
+    private Path path;
 
     public UserTests() throws IOException, ParseException {
-//        userHttpActions = new UserHttpActions();
-//        FileReader reader = new FileReader("../data/createUserData.json");
-//        jsonParser = new JSONParser();
-//        createUserJsonData = (JSONObject) jsonParser.parse(reader);
+        userHttpActions = new UserHttpActions();
+        path = FileSystems.getDefault().getPath(".").toAbsolutePath();
+        String dataPath=path+"/src/test/java/apitest/data/";
+        FileReader reader = new FileReader(dataPath+"createUserData.json");
+        jsonParser = new JSONParser();
+        createUserJsonData = (JSONObject) jsonParser.parse(reader);
+
     }
 
     @Test
-    public void verifyUserCreate() throws UnirestException {
-//        HttpResponse<String> responseData = userHttpActions.addUser(createUserJsonData);
-//        assertThat(responseData.getStatus()).isEqualTo(HttpStatus.OK);
-    	assertThat(true).isEqualTo(true);
+    public void verifyUserCreate() throws UnirestException, IOException, ParseException {
+        HttpResponse<String> responseData = userHttpActions.addUser(createUserJsonData);
+        assertThat(responseData.getStatus()).isEqualTo(HttpStatus.OK);
     }
 
     @Test

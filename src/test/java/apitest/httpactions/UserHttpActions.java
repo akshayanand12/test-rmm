@@ -19,7 +19,7 @@ public class UserHttpActions {
 
     public HttpResponse<String> addUser(JSONObject createUserJsonData) throws UnirestException {
         HttpResponse<String> response;
-        response = Unirest.post(url).body(createUserJsonData)
+        response = Unirest.post(url).body(createUserJsonData.toString())
                 .asString();
         return response;
     }

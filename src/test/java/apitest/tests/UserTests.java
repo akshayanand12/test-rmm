@@ -50,7 +50,7 @@ public class UserTests {
     public void verifyUserGet() throws UnirestException
     {
     	HttpResponse<String> responseData = userHttpActions.getUsers();
-        assertThat(responseData.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(responseData.getStatus()).isEqualTo(HttpStatus.OK.value());      
     }
 
 

@@ -31,15 +31,27 @@ pipeline {
         	}
         }
         
-        stage('BDD Tests') {
+        stage('Publish Artifacts') {
+        	steps {
+        		echo 'Artifact publish here'
+        	}
+        }
+        
+        stage('Deploy') {
+        	steps {
+        		echo 'Artifact publish here'
+        	}
+        }
+        
+        stage('API Tests') {
         	steps {
         		echo 'BDD tests run here'
         	}
         }
         
-        stage('Publish Artifacts') {
+        stage('Clean up') {
         	steps {
-        		echo 'BDD tests run here'
+        		echo 'Artifact publish here'
         	}
         }
     }

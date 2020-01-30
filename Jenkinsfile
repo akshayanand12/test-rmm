@@ -7,6 +7,13 @@ pipeline {
     }
      
     stages { 
+    
+    	stage('Clone') { 
+	    	steps {
+	        		echo 'Clone'
+	        }  
+        }
+        
         stage('Build') { 
             steps { 
               git branch: 'master', url: 'https://github.com/akshayanand12/test-rmm.git'
@@ -25,33 +32,51 @@ pipeline {
         	}
         }
         
+        stage('Visual Tests') {
+        	steps {
+	        	echo 'Visual Tests'
+	        }  
+        }
+        
+        stage('Contract Tests') {
+        	steps {
+	        	echo 'Contract Tests'
+	        }  
+        }
+        
         stage('Security Scans') {
         	steps {
         		echo 'This is a security scans'
         	}
         }
         
-        stage('Publish Artifacts') {
+        stage('Publish to Nexus') {
         	steps {
         		echo 'Artifact publish here'
         	}
         }
         
-        stage('Deploy') {
+        stage('PCF Deploy') {
         	steps {
-        		echo 'Artifact publish here'
+        		echo 'Deploy to PCF'
         	}
         }
         
-        stage('API Tests') {
+        stage('BDD Tests') {
         	steps {
         		echo 'BDD tests run here'
         	}
         }
         
+        stage('PCF Delete') {
+        	steps {
+        		echo 'PCF Delete'
+        	}
+        }
+        
         stage('Clean up') {
         	steps {
-        		echo 'Artifact publish here'
+        		echo 'Clean up'
         	}
         }
     }

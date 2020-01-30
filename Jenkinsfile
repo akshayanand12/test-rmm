@@ -7,52 +7,35 @@ pipeline {
     }
      
     stages { 
-        stage('Build') { 
+    
+    	stage('e2e Tests') { 
+	    	steps {
+	        		echo 'e2e Tests'
+	        }  
+        }
+        
+        stage('Performance Tests') { 
             steps { 
-              git branch: 'master', url: 'https://github.com/akshayanand12/test-rmm.git'
-              script {
-                  def pom = readMavenPom file: 'pom.xml'
-                  version = pom.version
-              }
-              sh "mvn install -DskipTests=true"
+              echo 'Performance Tests'
             }
         }
         
-        stage('Unit Tests') {
-        	steps {
-        		echo 'This is a unit test stage'
-              	sh "mvn test -Dspring.profiles.active=test"
-        	}
+        stage('Security Tests') { 
+            steps { 
+              echo 'Security Tests'
+            }
         }
         
-        stage('Security Scans') {
-        	steps {
-        		echo 'This is a security scans'
-        	}
+        stage('Chaos Tests') { 
+            steps { 
+              echo 'Chaos Tests'
+            }
         }
         
-        stage('Publish Artifacts') {
-        	steps {
-        		echo 'Artifact publish here'
-        	}
-        }
-        
-        stage('Deploy') {
-        	steps {
-        		echo 'Artifact publish here'
-        	}
-        }
-        
-        stage('API Tests') {
-        	steps {
-        		echo 'BDD tests run here'
-        	}
-        }
-        
-        stage('Clean up') {
-        	steps {
-        		echo 'Artifact publish here'
-        	}
+        stage('Responsive Web Tests') { 
+            steps { 
+              echo 'Responsive Web Tests'
+            }
         }
     }
 }

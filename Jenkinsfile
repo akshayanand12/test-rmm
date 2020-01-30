@@ -7,52 +7,65 @@ pipeline {
     }
      
     stages { 
+    
+    	stage('Clone') { 
+	    	steps {
+	        		echo 'Clone'
+	        }  
+        }
+        
         stage('Build') { 
             steps { 
-              git branch: 'master', url: 'https://github.com/akshayanand12/test-rmm.git'
-              script {
-                  def pom = readMavenPom file: 'pom.xml'
-                  version = pom.version
-              }
-              sh "mvn install -DskipTests=true"
+              echo 'Performance Tests'
             }
         }
         
-        stage('Unit Tests') {
-        	steps {
-        		echo 'This is a unit test stage'
-              	sh "mvn test -Dspring.profiles.active=test"
-        	}
+        stage('Unit Tests') { 
+            steps { 
+              echo 'Unit Tests'
+            }
         }
         
-        stage('Security Scans') {
-        	steps {
-        		echo 'This is a security scans'
-        	}
+        stage('Contract Tests') { 
+            steps { 
+              echo 'Contract Tests'
+            }
         }
         
-        stage('Publish Artifacts') {
-        	steps {
-        		echo 'Artifact publish here'
-        	}
+        stage('Security Scans') { 
+            steps { 
+              echo 'Security Scans'
+            }
         }
         
-        stage('Deploy') {
-        	steps {
-        		echo 'Artifact publish here'
-        	}
+        stage('Publish to Nexus') { 
+            steps { 
+              echo 'Publish to Nexus'
+            }
         }
         
-        stage('API Tests') {
-        	steps {
-        		echo 'BDD tests run here'
-        	}
+        stage('PCF Deploy') { 
+            steps { 
+              echo 'PCF Deploy'
+            }
         }
         
-        stage('Clean up') {
-        	steps {
-        		echo 'Artifact publish here'
-        	}
+        stage('Run API Tests') { 
+            steps { 
+              echo 'Run API Tests'
+            }
+        }
+        
+        stage('PCF Delete') { 
+            steps { 
+              echo 'PCF Delete'
+            }
+        }
+        
+        stage('Clean up') { 
+            steps { 
+              echo 'Clean up'
+            }
         }
     }
 }

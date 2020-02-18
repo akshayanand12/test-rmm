@@ -17,14 +17,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.akshay.testrmm.Configuration;
+
 @RestController
 public class UserResource {
 	@Autowired
 	private UserDAOService service;
 	
+	@Autowired
+	private Configuration configuration;
+	
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {
 		return service.findAll();
+	}
+	
+	@GetMapping("/users/page-size")
+	public Integer retrievePageSize() {
+		return configuration.getPageSize();
 	}
 	
 	@GetMapping("/users/{id}")
